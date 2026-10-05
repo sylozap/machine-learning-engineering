@@ -1,14 +1,14 @@
 {
   "val": {
-    "accuracy": 0.9118,
-    "f1_macro": 0.9104,
-    "precision_macro": 0.915,
-    "recall_macro": 0.9106
+    "accuracy": 0.9149,
+    "f1_macro": 0.913,
+    "precision_macro": 0.9179,
+    "recall_macro": 0.9135
   },
   "test": {
-    "accuracy": 0.9118,
-    "f1_macro": 0.9119,
-    "precision_macro": 0.9159,
-    "recall_macro": 0.9142
+    "accuracy": 0.9077,
+    "f1_macro": 0.909,
+    "precision_macro": 0.913,
+    "recall_macro": 0.9103
   }
 }
