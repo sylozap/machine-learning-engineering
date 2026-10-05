@@ -1,0 +1,77 @@
+stages:
+  download:
+    cmd: python src/download.py
+    deps:
+      - src/download.py
+    params:
+      - data.kaggle_dataset
+    outs:
+      - data/raw
+
+  prepare:
+    cmd: python src/prepare.py
+    deps:
+      - src/prepare.py
+      - data/raw
+    params:
+      - data.seed
+      - data.val_size
+      - data.test_size
+    outs:
+      - data/prepared
+
+  augment:
+    cmd: python src/augment.py
+    deps:
+      - src/augment.py
+      - data/raw
+      - data/prepared
+    params:
+      - augment
+    outs:
+      - data/augmented
+      - plots/augmentation_examples.png:
+          cache: false
+
+  featurize:
+    cmd: python src/featurize.py
+    deps:
+      - src/featurize.py
+      - data/raw
+      - data/prepared
+      - data/augmented
+    params:
+      - featurize
+    outs:
+      - data/features
+
+  train:
+    cmd: python src/train.py
+    deps:
+      - src/train.py
+      - data/features
+    params:
+      - train
+    outs:
+      - models/model.joblib
+    metrics:
+      - metrics/train.json:
+          cache: false
+
+  evaluate:
+    cmd: python src/evaluate.py
+    deps:
+      - src/evaluate.py
+      - models/model.joblib
+      - data/features
+    metrics:
+      - metrics/eval.json:
+          cache: false
+    plots:
+      - plots/confusion.csv:
+          template: confusion
+          x: predicted
+          y: actual
+          cache: false
+      - plots/confusion_matrix.png:
+          cache: false

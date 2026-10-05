@@ -1,0 +1,37 @@
+data:
+  kaggle_dataset: phucthaiv02/butterfly-image-classification
+  seed: 42
+  val_size: 0.15
+  test_size: 0.15
+
+augment:
+  seed: 42
+  copies_per_image: 2      # сколько аугментированных копий делать из каждого train-изображения
+  image_size: 224
+  hflip_p: 0.5
+  rotation_deg: 25
+  crop_scale_min: 0.7
+  brightness: 0.3
+  contrast: 0.3
+  saturation: 0.3
+  hue: 0.05
+  blur_p: 0.2
+
+featurize:
+  backbone: efficientnet_b0  # efficientnet_b0 | resnet50 | mobilenet_v3_large
+  batch_size: 64
+  num_workers: 4
+
+train:
+  model: logreg            # logreg | svm | random_forest
+  use_augmented: false     # добавлять ли аугментированные данные к обучающей выборке
+  seed: 42
+  logreg:
+    C: 1.0
+    max_iter: 3000
+  svm:
+    C: 10.0
+    kernel: rbf
+  random_forest:
+    n_estimators: 500
+    max_depth: null
