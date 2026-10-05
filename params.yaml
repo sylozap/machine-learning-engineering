@@ -23,7 +23,7 @@ featurize:
   num_workers: 4
 
 train:
-  model: logreg            # logreg | svm | random_forest
+  model: random_forest     # logreg | svm | random_forest
   use_augmented: false     # добавлять ли аугментированные данные к обучающей выборке
   seed: 42
   logreg:
@@ -34,4 +34,4 @@ train:
     kernel: rbf
   random_forest:
     n_estimators: 500
-    max_depth: null
+    max_depth:
