@@ -129,7 +129,7 @@ stages:
     params:
       params.yaml:
         train:
-          model: logreg
+          model: random_forest
           use_augmented: false
           seed: 42
           logreg:
@@ -144,12 +144,12 @@ stages:
     outs:
     - path: metrics/train.json
       hash: md5
-      md5: d70b499420872e4f46964078308233b0
+      md5: f2949d1eacffe0721f6a951ffacf2e8e
       size: 47
     - path: models/model.joblib
       hash: md5
-      md5: 8a448959f3f8f8e4567ef77791f17b53
-      size: 416997
+      md5: 46d565e814ae36e16de496ece30d43a6
+      size: 871434266
   evaluate:
     cmd: python src/evaluate.py
     deps:
@@ -160,8 +160,8 @@ stages:
       nfiles: 4
     - path: models/model.joblib
       hash: md5
-      md5: 8a448959f3f8f8e4567ef77791f17b53
-      size: 416997
+      md5: 46d565e814ae36e16de496ece30d43a6
+      size: 871434266
     - path: src/evaluate.py
       hash: md5
       md5: f3df7d6c38e498121d2b2a236861902a
@@ -169,13 +169,13 @@ stages:
     outs:
     - path: metrics/eval.json
       hash: md5
-      md5: 75498fb4d48c1bc164024db316b9702d
-      size: 246
+      md5: 2231381fcd22dd42fe7b4ef3089bf020
+      size: 247
     - path: plots/confusion.csv
       hash: md5
-      md5: 043ec8f58c30303941c16741bd389299
-      size: 27503
+      md5: 96748fa3ab28fa25f4f6b1e1697783ce
+      size: 27533
     - path: plots/confusion_matrix.png
       hash: md5
-      md5: 01e544a3f95e0fe225cee0be09f51444
-      size: 37062
+      md5: 4321f4cbbf764da537cb8f74cbe80e95
+      size: 37766
