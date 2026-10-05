@@ -34,4 +34,4 @@ train:
     kernel: rbf
   random_forest:
     n_estimators: 500
-    max_depth: null
+    max_depth:
